@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Plataforma de Tutorías</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilos/principal.css">
+    <link rel="stylesheet" href="../estilos/componentes/encabezado.css">
+    <link rel="stylesheet" href="../estilos/componentes/pie-pagina.css">
+    <link rel="stylesheet" href="../estilos/paginas/login.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-main">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../recursos/imagenes/logo.png" alt="Logo Tutorías">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="registro.html">Registro</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="login-container">
+        <div class="login-box">
+            <h1>Iniciar Sesión</h1>
+            
+            <!-- Formulario de login -->
+            <form id="loginForm" class="login-form">
+                <div class="form-grupo">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required>
+                    <a href="#" class="forgot-password" id="btnRecuperarPassword">
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
+
+                <button type="submit" class="btn-login">Iniciar Sesión</button>
+            </form>
+
+            <!-- Inicio de sesión con redes sociales -->
+            <div class="social-login">
+                <p>O inicia sesión con:</p>
+                <div class="social-buttons">
+                    <button id="btnGoogleLogin" class="btn-social btn-google">
+                        <img src="../recursos/imagenes/iconos/google.png" alt="Google">
+                        Google
+                    </button>
+                    <button id="btnFacebookLogin" class="btn-social btn-facebook">
+                        <img src="../recursos/imagenes/iconos/facebook.png" alt="Facebook">
+                        Facebook
+                    </button>
+                </div>
+            </div>
+
+            <!-- Link a registro -->
+            <div class="register-link">
+                ¿No tienes una cuenta? 
+                <a href="registro.html">Regístrate aquí</a>
+            </div>
+        </div>
+
+        <!-- Modal de recuperación de contraseña -->
+        <div id="recuperarPasswordModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Recuperar Contraseña</h2>
+                <p>Ingresa tu correo electrónico y te enviaremos un enlace para recuperar tu contraseña.</p>
+                <form id="recuperarPasswordForm">
+                    <div class="form-grupo">
+                        <input type="email" id="emailRecuperar" 
+                               placeholder="Correo electrónico" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Enviar enlace</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>Conectamos estudiantes con los mejores tutores.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@tutorias.com</p>
+                <p>Tel: (123) 456-7890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Plataforma de Tutorías</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    </script>
+    <script type="module" src="../firebase/config.js"></script>
+    <script type="module" src="../scripts/login.js"></script>
+</body>
+</html>

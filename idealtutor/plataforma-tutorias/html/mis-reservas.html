@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Reservas - Plataforma de Tutorías</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilos/principal.css">
+    <link rel="stylesheet" href="../estilos/componentes/encabezado.css">
+    <link rel="stylesheet" href="../estilos/componentes/pie-pagina.css">
+    <link rel="stylesheet" href="../estilos/paginas/mis-reservas.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-main">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../recursos/imagenes/logo.png" alt="Logo Tutorías">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Tutores</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="user-menu" id="userArea">
+                <!-- Se llenará dinámicamente -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="reservas-container">
+        <h1>Mis Reservas</h1>
+
+        <!-- Filtros -->
+        <div class="filtros-section">
+            <div class="filtros-grupo">
+                <select id="filtroEstado" class="filtro-select">
+                    <option value="todas">Todas las reservas</option>
+                    <option value="pendiente">Pendientes</option>
+                    <option value="completada">Completadas</option>
+                    <option value="cancelada">Canceladas</option>
+                </select>
+
+                <select id="filtroFecha" class="filtro-select">
+                    <option value="todas">Todas las fechas</option>
+                    <option value="hoy">Hoy</option>
+                    <option value="semana">Esta semana</option>
+                    <option value="mes">Este mes</option>
+                </select>
+            </div>
+
+            <div class="busqueda">
+                <input type="text" id="busquedaReserva" 
+                       placeholder="Buscar por tutor o materia...">
+            </div>
+        </div>
+
+        <!-- Lista de Reservas -->
+        <div class="reservas-grid" id="reservasContainer">
+            <!-- Las reservas se cargarán dinámicamente -->
+            <div class="loading-message">Cargando reservas...</div>
+        </div>
+
+        <!-- Template para las reservas -->
+        <template id="reservaTemplate">
+            <div class="reserva-card">
+                <div class="reserva-header">
+                    <div class="tutor-info">
+                        <img src="" alt="Foto del tutor" class="tutor-foto">
+                        <div class="tutor-detalles">
+                            <h3 class="tutor-nombre"></h3>
+                            <span class="materia"></span>
+                        </div>
+                    </div>
+                    <div class="reserva-estado">
+                        <span class="estado-badge"></span>
+                    </div>
+                </div>
+
+                <div class="reserva-detalles">
+                    <div class="detalle-item">
+                        <span class="icon">📅</span>
+                        <span class="fecha"></span>
+                    </div>
+                    <div class="detalle-item">
+                        <span class="icon">⏰</span>
+                        <span class="hora"></span>
+                    </div>
+                    <div class="detalle-item">
+                        <span class="icon">⌛</span>
+                        <span class="duracion"></span>
+                    </div>
+                    <div class="detalle-item">
+                        <span class="icon">💻</span>
+                        <span class="modalidad"></span>
+                    </div>
+                </div>
+
+                <div class="reserva-footer">
+                    <div class="precio">
+                        <span class="label">Total:</span>
+                        <span class="monto"></span>
+                    </div>
+                    <div class="acciones">
+                        <!-- Los botones se agregarán según el estado -->
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Modal de Cancelación -->
+        <div id="modalCancelacion" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Cancelar Reserva</h2>
+                <p>¿Estás seguro de que deseas cancelar esta reserva?</p>
+                <form id="formCancelacion">
+                    <div class="form-grupo">
+                        <label for="motivoCancelacion">Motivo de la cancelación:</label>
+                        <textarea id="motivoCancelacion" required></textarea>
+                    </div>
+                    <div class="botones-modal">
+                        <button type="button" class="btn-secundario" onclick="cerrarModal()">No, mantener</button>
+                        <button type="submit" class="btn-primario">Sí, cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>Conectamos estudiantes con los mejores tutores.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@tutorias.com</p>
+                <p>Tel: (123) 456-7890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Plataforma de Tutorías</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    </script>
+    <script type="module" src="../firebase/config.js"></script>
+    <script type="module" src="../scripts/mis-reservas.js"></script>
+</body>
+</html>

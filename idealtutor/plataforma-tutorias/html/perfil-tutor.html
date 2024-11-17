@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Tutor - Plataforma de Tutorías</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilos/principal.css">
+    <link rel="stylesheet" href="../estilos/componentes/encabezado.css">
+    <link rel="stylesheet" href="../estilos/componentes/pie-pagina.css">
+    <link rel="stylesheet" href="../estilos/paginas/perfil-tutor.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-main">
+            <div class="logo">
+                <a href="/plataforma-tutorias/index.html">
+                    <img src="recursos/imagenes/logo.png" alt="Logo Tutorías">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/plataforma-tutorias/index.html" class="active">Inicio</a></li>
+                <li><a href="/plataforma-tutorias/html/nosotros.html">Nosotros</a></li>
+                <li><a href="/plataforma-tutorias/html/servicios.html">Servicios</a></li>
+                <li><a href="/plataforma-tutorias/html/contacto.html">Contacto</a></li>
+            </ul>
+            <div class="auth-buttons" id="authButtons">
+                <a href="/plataforma-tutorias/html/login.html" class="btn-login">Iniciar Sesión</a>
+                <a href="/plataforma-tutorias/html/registro.html" class="btn-register">Registrarse</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="perfil-container">
+        <!-- Información Principal del Tutor -->
+        <section class="tutor-header">
+            <div class="tutor-info-main">
+                <div class="tutor-photo">
+                    <img id="tutorImage" src="../recursos/imagenes/default-profile.png" alt="Foto del tutor">
+                    <span class="verification-badge" title="Tutor Verificado">✓</span>
+                </div>
+                <div class="tutor-details">
+                    <h1 id="tutorNombre">Nombre del Tutor</h1>
+                    <p class="tutor-level">Universitario</p>
+                    
+                    <div class="tutor-stats">
+                        <div class="stat-item">
+                            <span class="rating-value">0.0</span>
+                            <span class="stat-label">⭐ Rating</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="classes-value">150+</span>
+                            <span class="stat-label">📚 Clases</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="students-value">50+</span>
+                            <span class="stat-label">👥 Estudiantes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid de Contenido -->
+        <div class="content-grid">
+            <!-- Columna Principal -->
+            <div class="main-content">
+                <!-- Sobre Mí -->
+                <section class="about-section card-section">
+                    <h2>Sobre Mí</h2>
+                    <p id="tutorDescripcion">Cargando descripción...</p>
+                    
+                    <div class="credentials">
+                        <div class="credential-item">
+                            <span class="credential-icon">🎓</span>
+                            <div class="credential-info">
+                                <h3>Educación</h3>
+                                <p class="education-value">Cargando...</p>
+                            </div>
+                        </div>
+                        <div class="credential-item">
+                            <span class="credential-icon">⏱️</span>
+                            <div class="credential-info">
+                                <h3>Experiencia</h3>
+                                <p class="experience-value">Cargando...</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Materias y Niveles -->
+                <section class="subjects-section card-section">
+                    <h2>Materias y Niveles</h2>
+                    <div class="subjects-list">
+                        <!-- Se llenará dinámicamente -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Widget de Reserva -->
+                <div class="booking-widget card-section">
+                    <div class="price-header">
+                        <h3>Precio por hora</h3>
+                        <div class="price">
+                            <span class="price-amount">$<span id="tutorPrecio">0</span></span>
+                            <span class="price-period">/hora</span>
+                        </div>
+                    </div>
+
+                    <form id="formReserva" class="booking-form">
+                        <div class="form-group">
+                            <label>Selecciona el día</label>
+                            <input type="date" id="dateSelect" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Horario disponible</label>
+                            <select id="timeSelect" required>
+                                <option value="">Selecciona un horario</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Duración de la clase</label>
+                            <div class="duration-options">
+                                <button type="button" class="duration-option active" data-duration="60">1h</button>
+                                <button type="button" class="duration-option" data-duration="90">1.5h</button>
+                                <button type="button" class="duration-option" data-duration="120">2h</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de clase</label>
+                            <div class="class-type-options">
+                                <button type="button" class="class-type-option active" data-type="online">
+                                    <span class="icon">💻</span>
+                                    Online
+                                </button>
+                                <button type="button" class="class-type-option" data-type="presencial">
+                                    <span class="icon">🏫</span>
+                                    Presencial
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="price-summary">
+                            <span>Total:</span>
+                            <span id="totalPrice" class="total-amount">$0.00</span>
+                        </div>
+
+                        <button type="submit" class="btn-reserve">Reservar Clase</button>
+                    </form>
+                </div>
+
+                <!-- Estadísticas del Tutor -->
+                <div class="stats-widget card-section">
+                    <h3>Estadísticas del Tutor</h3>
+                    <div class="stats-list">
+                        <div class="stat-row">
+                            <span class="stat-icon">⚡</span>
+                            <div class="stat-info">
+                                <span class="stat-label">Tiempo de respuesta</span>
+                                <span id="tasaRespuesta" class="stat-value">< 2 horas</span>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-icon">📊</span>
+                            <div class="stat-info">
+                                <span class="stat-label">Tasa de finalización</span>
+                                <span id="tasaFinalizacion" class="stat-value">98%</span>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-icon">🎯</span>
+                            <div class="stat-info">
+                                <span class="stat-label">Tasa de satisfacción</span>
+                                <span id="tasaSatisfaccion" class="stat-value">4.9/5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>Conectamos estudiantes con los mejores tutores.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="/plataforma-tutorias/html/nosotros.html">Nosotros</a></li>
+                    <li><a href="/plataforma-tutorias/html/servicios.html">Servicios</a></li>
+                    <li><a href="/plataforma-tutorias/html/contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@tutorias.com</p>
+                <p>Tel: (123) 456-7890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Plataforma de Tutorías</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    </script>
+    <script type="module" src="../firebase/config.js"></script>
+    <script type="module" src="../scripts/perfil-tutor.js"></script>
+</body>
+</html>

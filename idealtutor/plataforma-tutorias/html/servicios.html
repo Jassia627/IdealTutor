@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutores - Plataforma de Tutorías</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilos/principal.css">
+    <link rel="stylesheet" href="../estilos/componentes/encabezado.css">
+    <link rel="stylesheet" href="../estilos/componentes/pie-pagina.css">
+    <link rel="stylesheet" href="../estilos/paginas/servicios.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-main">
+            <div class="logo">
+                <a href="/plataforma-tutorias/index.html">
+                    <img src="../recursos/imagenes/logo.png" alt="Logo Tutorías">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/plataforma-tutorias/index.html">Inicio</a></li>
+                <li><a href="/plataforma-tutorias/html/nosotros.html">Nosotros</a></li>
+                <li><a href="/plataforma-tutorias/html/servicios.html" class="active">Tutores</a></li>
+                <li><a href="/plataforma-tutorias/html/contacto.html">Contacto</a></li>
+            </ul>
+            <div class="auth-buttons" id="authButtons">
+                <a href="/plataforma-tutorias/html/login.html" class="btn-login">Iniciar Sesión</a>
+                <a href="/plataforma-tutorias/html/registro.html" class="btn-register">Registrarse</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section con Búsqueda -->
+    <section class="hero-search">
+        <div class="container">
+            <h1>Encuentra tu Tutor Ideal</h1>
+            <p class="subtitle">Explora nuestra red de tutores expertos y encuentra el apoyo académico que necesitas</p>
+            
+            <div class="search-box">
+                <div class="search-input-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" 
+                           id="searchInput" 
+                           placeholder="Busca por materia, tutor o tema..."
+                           class="main-search">
+                </div>
+            </div>
+
+            <div class="quick-filters">
+                <button class="filter-pill active">Todos</button>
+                <button class="filter-pill">Matemáticas</button>
+                <button class="filter-pill">Física</button>
+                <button class="filter-pill">Química</button>
+                <button class="filter-pill">Programación</button>
+                <button class="filter-pill">Idiomas</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros Avanzados -->
+    <section class="advanced-filters">
+        <div class="container">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Nivel Académico</label>
+                    <select id="nivelFilter" class="filter-select">
+                        <option value="">Todos los niveles</option>
+                        <option value="primaria">Primaria</option>
+                        <option value="secundaria">Secundaria</option>
+                        <option value="preparatoria">Preparatoria</option>
+                        <option value="universidad">Universidad</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Rango de Precio</label>
+                    <select id="precioFilter" class="filter-select">
+                        <option value="">Cualquier precio</option>
+                        <option value="0-20">$0 - $20 /hora</option>
+                        <option value="21-40">$21 - $40 /hora</option>
+                        <option value="41-60">$41 - $60 /hora</option>
+                        <option value="60+">$60+ /hora</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Disponibilidad</label>
+                    <select id="disponibilidadFilter" class="filter-select">
+                        <option value="">Cualquier horario</option>
+                        <option value="manana">Mañana</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="noche">Noche</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Modalidad</label>
+                    <select id="modalidadFilter" class="filter-select">
+                        <option value="">Todas las modalidades</option>
+                        <option value="online">Online</option>
+                        <option value="presencial">Presencial</option>
+                        <option value="hibrido">Híbrido</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lista de Tutores -->
+    <section class="tutors-section">
+        <div class="container">
+            <div class="results-header">
+                <h2>Tutores Disponibles</h2>
+                <div class="results-info">
+                    <span class="results-count">Mostrando <strong id="tutorCount">0</strong> tutores</span>
+                </div>
+            </div>
+
+            <div class="tutors-grid" id="tutoresGrid">
+                <!-- Se llenará dinámicamente -->
+                <div class="loading-skeleton">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template para tarjeta de tutor -->
+    <template id="tutorCardTemplate">
+        <div class="tutor-card">
+            <div class="tutor-card-header">
+                <div class="tutor-avatar">
+                    <img src="" alt="Foto del tutor">
+                    <span class="online-status"></span>
+                </div>
+                <div class="tutor-basic-info">
+                    <h3 class="tutor-name"></h3>
+                    <p class="tutor-specialty"></p>
+                </div>
+            </div>
+            <div class="tutor-card-body">
+                <div class="tutor-stats">
+                    <div class="stat">
+                        <span class="stat-value rating"></span>
+                        <span class="stat-label">⭐ Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value sessions"></span>
+                        <span class="stat-label">📚 Clases</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value students"></span>
+                        <span class="stat-label">👥 Estudiantes</span>
+                    </div>
+                </div>
+                <div class="tutor-subjects"></div>
+                <div class="tutor-availability">
+                    <p>Próxima disponibilidad:</p>
+                    <div class="availability-slots">
+                        <!-- Se llenará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+            <div class="tutor-card-footer">
+                <div class="price">
+                    <span class="amount"></span>
+                    <span class="period">/hora</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-secondary btn-contact">Contactar</button>
+                    <button class="btn-primary btn-book">Ver Perfil</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>Conectamos estudiantes con los mejores tutores.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="/plataforma-tutorias/html/nosotros.html">Nosotros</a></li>
+                    <li><a href="/plataforma-tutorias/html/servicios.html">Tutores</a></li>
+                    <li><a href="/plataforma-tutorias/html/contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@tutorias.com</p>
+                <p>Tel: (123) 456-7890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Plataforma de Tutorías</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    </script>
+    <script type="module" src="../firebase/config.js"></script>
+    <script type="module" src="../scripts/servicios.js"></script>
+</body>
+</html>

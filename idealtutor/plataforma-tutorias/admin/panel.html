@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Tutor - Plataforma de Tutorías</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilos/principal.css">
+    <link rel="stylesheet" href="../estilos/componentes/encabezado.css">
+    <link rel="stylesheet" href="../estilos/admin/panel.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="tutor-profile">
+                    <img id="tutorImage" src="../recursos/imagenes/default-profile.png" alt="Foto de perfil">
+                    <div class="tutor-info">
+                        <h3 id="tutorName">Cargando...</h3>
+                        <span id="tutorStatus" class="status-badge online">Online</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>Principal</h4>
+                    <ul>
+                        <li class="active">
+                            <a href="panel.html">
+                                <span class="icon">📊</span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="horarios.html">
+                                <span class="icon">📅</span>
+                                Horarios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="clases.html">
+                                <span class="icon">📚</span>
+                                Mis Clases
+                            </a>
+                        </li>
+                        <li>
+                            <a href="estudiantes.html">
+                                <span class="icon">👥</span>
+                                Estudiantes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h4>Gestión</h4>
+                    <ul>
+                        <li>
+                            <a href="perfil-tutor.html">
+                                <span class="icon">👤</span>
+                                Mi Perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="materias.html">
+                                <span class="icon">📖</span>
+                                Materias
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pagos.html">
+                                <span class="icon">💰</span>
+                                Pagos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="btnLogout" class="btn-logout">
+                    <span class="icon">🚪</span>
+                    Cerrar Sesión
+                </button>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                    <p class="breadcrumb">Principal / Dashboard</p>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <span class="icon">🔔</span>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="messages">
+                        <span class="icon">✉️</span>
+                        <span class="badge">5</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Tarjetas de Resumen -->
+            <section class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon students">👥</div>
+                    <div class="stat-info">
+                        <h3>Estudiantes Activos</h3>
+                        <p class="stat-number">24</p>
+                        <span class="trend positive">+12% este mes</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon classes">📚</div>
+                    <div class="stat-info">
+                        <h3>Clases Impartidas</h3>
+                        <p class="stat-number">156</p>
+                        <span class="trend positive">+8% este mes</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon earnings">💰</div>
+                    <div class="stat-info">
+                        <h3>Ganancias</h3>
+                        <p class="stat-number">$1,280</p>
+                        <span class="trend positive">+15% este mes</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon rating">⭐</div>
+                    <div class="stat-info">
+                        <h3>Calificación</h3>
+                        <p class="stat-number">4.8</p>
+                        <span class="reviews">(45 reseñas)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Próximas Clases -->
+            <section class="upcoming-classes">
+                <div class="section-header">
+                    <h2>Próximas Clases</h2>
+                    <button class="btn-primary">Ver Todas</button>
+                </div>
+                
+                <div class="classes-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Estudiante</th>
+                                <th>Materia</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="upcomingClassesBody">
+                            <!-- Se llenará dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Gráficos y Estadísticas -->
+            <div class="charts-grid">
+                <section class="chart-card earnings-chart">
+                    <h3>Ganancias Mensuales</h3>
+                    <div class="chart-container" id="earningsChart">
+                        <!-- Aquí irá el gráfico -->
+                    </div>
+                </section>
+
+                <section class="chart-card students-chart">
+                    <h3>Estudiantes Nuevos</h3>
+                    <div class="chart-container" id="studentsChart">
+                        <!-- Aquí irá el gráfico -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    </script>
+    <script type="module" src="../firebase/config.js"></script>
+    <script type="module" src="../scripts/admin/panel.js"></script>
+</body>
+</html>

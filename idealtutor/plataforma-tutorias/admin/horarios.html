@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios - Panel de Tutor</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilos/principal.css">
+    <link rel="stylesheet" href="../estilos/componentes/encabezado.css">
+    <link rel="stylesheet" href="../estilos/admin/panel.css">
+    <link rel="stylesheet" href="../estilos/admin/horarios.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar - Igual que en panel.html -->
+        <aside class="sidebar">
+            <!-- ... contenido del sidebar ... -->
+            <!-- (Mantener el mismo sidebar que en panel.html) -->
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Gestión de Horarios</h1>
+                    <p class="breadcrumb">Principal / Horarios</p>
+                </div>
+            </header>
+
+            <!-- Calendario y Horarios -->
+            <div class="horarios-grid">
+                <!-- Calendario Mensual -->
+                <section class="calendario-section">
+                    <div class="calendario-header">
+                        <h2>Calendario</h2>
+                        <div class="calendario-nav">
+                            <button class="btn-nav" id="prevMonth">◀</button>
+                            <h3 id="currentMonth">Noviembre 2024</h3>
+                            <button class="btn-nav" id="nextMonth">▶</button>
+                        </div>
+                    </div>
+                    <div class="calendario" id="calendario">
+                        <!-- Se llenará dinámicamente -->
+                    </div>
+                </section>
+
+                <!-- Horarios del Día -->
+                <section class="horarios-dia">
+                    <div class="horarios-header">
+                        <h2>Horarios Disponibles</h2>
+                        <div class="horarios-actions">
+                            <button class="btn-primary" id="btnAgregarHorario">
+                                Agregar Horario
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="horarios-slots" id="horariosContainer">
+                        <!-- Slots de horario -->
+                        <div class="horario-grupo">
+                            <h3>Mañana</h3>
+                            <div class="slots-grid" id="slotsManana">
+                                <!-- Se llenará dinámicamente -->
+                            </div>
+                        </div>
+
+                        <div class="horario-grupo">
+                            <h3>Tarde</h3>
+                            <div class="slots-grid" id="slotsTarde">
+                                <!-- Se llenará dinámicamente -->
+                            </div>
+                        </div>
+
+                        <div class="horario-grupo">
+                            <h3>Noche</h3>
+                            <div class="slots-grid" id="slotsNoche">
+                                <!-- Se llenará dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Preferencias de Horario -->
+            <section class="preferencias-section">
+                <h2>Preferencias de Horario</h2>
+                <div class="preferencias-grid">
+                    <div class="preferencia-card">
+                        <h3>Duración de Clases</h3>
+                        <div class="duracion-options">
+                            <button class="duracion-btn active">1h</button>
+                            <button class="duracion-btn">1.5h</button>
+                            <button class="duracion-btn">2h</button>
+                        </div>
+                    </div>
+
+                    <div class="preferencia-card">
+                        <h3>Descanso entre Clases</h3>
+                        <select class="select-descanso">
+                            <option value="0">Sin descanso</option>
+                            <option value="15">15 minutos</option>
+                            <option value="30" selected>30 minutos</option>
+                            <option value="45">45 minutos</option>
+                        </select>
+                    </div>
+
+                    <div class="preferencia-card">
+                        <h3>Días Laborables</h3>
+                        <div class="dias-semana">
+                            <label><input type="checkbox" checked> Lunes</label>
+                            <label><input type="checkbox" checked> Martes</label>
+                            <label><input type="checkbox" checked> Miércoles</label>
+                            <label><input type="checkbox" checked> Jueves</label>
+                            <label><input type="checkbox" checked> Viernes</label>
+                            <label><input type="checkbox"> Sábado</label>
+                            <label><input type="checkbox"> Domingo</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal para agregar horario -->
+        <div id="modalHorario" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Agregar Horario</h2>
+                <form id="formHorario">
+                    <div class="form-group">
+                        <label>Hora de inicio</label>
+                        <input type="time" id="horaInicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora de fin</label>
+                        <input type="time" id="horaFin" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Repetir</label>
+                        <select id="repeticion">
+                            <option value="no">No repetir</option>
+                            <option value="diario">Todos los días</option>
+                            <option value="semanal">Cada semana</option>
+                            <option value="personalizado">Personalizado</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Guardar Horario</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="../firebase/config.js"></script>
+    <script type="module" src="../scripts/admin/horarios.js"></script>
+</body>
+</html> 
